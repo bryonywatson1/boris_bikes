@@ -1,6 +1,5 @@
 require 'docking_station'
 
 describe DockingStation do
-  it "releases a bike to user" do
-  end
+  it {expect(docking_station.respond_to(release_bike)).to eq true} 
 end
