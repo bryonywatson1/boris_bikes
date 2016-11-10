@@ -6,7 +6,7 @@ describe DockingStation do
   it { is_expected.to respond_to(:release_bike) }
 
   it 'raises an error when there are no available bikes' do
-    expect { subject.release_bike }.to raise_error("Error: No Bikes in Docking Station")
+    expect { station.release_bike }.to raise_error("Error: No Bikes in Docking Station")
   end
 
   it 'releases working bikes' do
@@ -34,5 +34,10 @@ describe DockingStation do
     DockingStation::DEFAULT_CAPACITY.times { station.dock_bike('bike')}
     expect{(station.dock_bike('21st bike'))}.to raise_error("Error: Docking Station Full")
   end
+
+   it 'user to specify a larger capacity of bikes if needed' do
+     station2 = DockingStation.new(15)
+     expect(station2.capacity).to eq 15
+   end
 
 end

@@ -2,10 +2,12 @@
 
 class DockingStation
   attr_accessor :all_bikes
+  attr_accessor :capacity
 
-  DEFAULT_CAPACITY = 20
+   DEFAULT_CAPACITY = 20
 
-  def initialize
+  def initialize(capacity=DEFAULT_CAPACITY)
+    @capacity = capacity
     @all_bikes = []
   end
 
@@ -35,7 +37,7 @@ class DockingStation
   end
 
   def docking_station_full?
-    bike_count >= 20
+    bike_count >= @capacity
   end
 
 end
