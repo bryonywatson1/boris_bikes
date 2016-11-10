@@ -5,7 +5,7 @@ describe DockingStation do
   it { is_expected.to respond_to(:release_bike) }
 
   it 'raises an error when there are no available bikes' do
-    expect { subject.release_bike }.to raise_error
+    expect { subject.release_bike }.to raise_error("Error: No Bikes in Docking Station")
   end
 
   it 'releases working bikes' do
@@ -29,15 +29,16 @@ describe DockingStation do
     is_expected.to respond_to(:bike_count)
   end
 
-  # it 'raises an error when docking station is full' do
-  #   @all_bikes = ['bmx']
-  #   expect { subject.dock_bike }.to raise_error
-  # end
 
   it 'adds bike name to array when bike is docked' do
     subject.dock_bike("Jenna")
     expect(subject.bike_count).to eq 1
   end
 
+  it 'check if docking station capacity is 20 bikes' do
+    station = DockingStation.new
+    20.times { station.dock_bike('bike')}
+    expect{(station.dock_bike('21st bike'))}.to raise_error("Error: Docking Station Full")
+  end
 
 end

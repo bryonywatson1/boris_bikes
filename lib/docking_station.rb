@@ -14,12 +14,12 @@ class DockingStation
   end
 
   def release_bike
-    fail if @all_bikes.empty?
+    fail "Error: No Bikes in Docking Station" if @all_bikes.empty?
     @all_bikes.pop
   end
 
   def dock_bike(bike_name)
-   fail if @all_bikes.length >= 1
+   fail "Error: Docking Station Full" if @all_bikes.length >= 20
     @all_bikes << bike_name
     @bike = bike_name
     @all_bikes
