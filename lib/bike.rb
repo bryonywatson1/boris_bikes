@@ -1,6 +1,6 @@
 class Bike
 
-  def working?
-    return "Yes"
+  def working?(status = "working")
+    status == "working" ? true : false
   end
 end
