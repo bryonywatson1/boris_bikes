@@ -23,16 +23,18 @@ class DockingStation
     @all_bikes
   end
 
+  def bike_count
+    @all_bikes.length
+  end
+
+  private
+
   def docking_station_empty?
     bike_count == 0
   end
 
   def docking_station_full?
     bike_count >= 20
-  end
-
-  def bike_count
-    @all_bikes.length
   end
 
 end
