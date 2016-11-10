@@ -31,12 +31,8 @@ describe DockingStation do
   end
 
   it 'check if docking station capacity is 20 bikes' do
-    20.times { station.dock_bike('bike')}
+    DockingStation::DEFAULT_CAPACITY.times { station.dock_bike('bike')}
     expect{(station.dock_bike('21st bike'))}.to raise_error("Error: Docking Station Full")
-  end
-
-  it 'checks if docking station is empty' do
-    is_expected.to respond_to(:docking_station_empty?)
   end
 
 end
