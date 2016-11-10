@@ -1,7 +1,6 @@
 #require './lib/bike'
 
 class DockingStation
-  attr_accessor :bike
   attr_accessor :all_bikes
 
 
@@ -14,15 +13,22 @@ class DockingStation
   end
 
   def release_bike
-    fail "Error: No Bikes in Docking Station" if @all_bikes.empty?
+    fail "Error: No Bikes in Docking Station" if docking_station_empty?
     @all_bikes.pop
   end
 
   def dock_bike(bike_name)
-   fail "Error: Docking Station Full" if @all_bikes.length >= 20
+   fail "Error: Docking Station Full" if docking_station_full?
     @all_bikes << bike_name
-    @bike = bike_name
     @all_bikes
+  end
+
+  def docking_station_empty?
+    bike_count == 0
+  end
+
+  def docking_station_full?
+    bike_count >= 20
   end
 
   def bike_count

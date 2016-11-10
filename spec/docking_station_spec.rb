@@ -2,6 +2,7 @@ require "./lib/docking_station"
 require "./lib/bike"
 
 describe DockingStation do
+  subject(:station){described_class.new}
   it { is_expected.to respond_to(:release_bike) }
 
   it 'raises an error when there are no available bikes' do
@@ -9,20 +10,14 @@ describe DockingStation do
   end
 
   it 'releases working bikes' do
-    bike = subject.generate_bike
+    bike = station.generate_bike
     expect(bike.working?)
   end
 
-  it 'docks a bike' do
-    is_expected.to respond_to(:dock_bike).with(1).argument
-  end
+  it { is_expected.to respond_to(:dock_bike).with(1).argument }
 
   it 'docks a bike named bmx' do
-    expect(subject.dock_bike('bmx')).to eq ['bmx']
-  end
-
-  it 'shows the bike name' do
-    expect(subject.bike).to eq @bike
+    expect(station.dock_bike('bmx')).to eq ['bmx']
   end
 
   it 'checks for available bikes' do
@@ -31,14 +26,17 @@ describe DockingStation do
 
 
   it 'adds bike name to array when bike is docked' do
-    subject.dock_bike("Jenna")
-    expect(subject.bike_count).to eq 1
+    station.dock_bike("Jenna")
+    expect(station.bike_count).to eq 1
   end
 
   it 'check if docking station capacity is 20 bikes' do
-    station = DockingStation.new
     20.times { station.dock_bike('bike')}
     expect{(station.dock_bike('21st bike'))}.to raise_error("Error: Docking Station Full")
+  end
+
+  it 'checks if docking station is empty' do
+    is_expected.to respond_to(:docking_station_empty?)
   end
 
 end
