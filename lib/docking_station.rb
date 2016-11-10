@@ -15,14 +15,14 @@ class DockingStation
 
   def release_bike
     fail if @all_bikes.empty?
-    generate_bike
     @all_bikes.pop
   end
 
   def dock_bike(bike_name)
-   fail if @all_bikes.length > 0
+   fail if @all_bikes.length >= 1
     @all_bikes << bike_name
     @bike = bike_name
+    @all_bikes
   end
 
   def bike_count
